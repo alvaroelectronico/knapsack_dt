@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import json
 import os
-
+from config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 class KnapsackInstanceGenerator:
     def __init__(self, weight_range=(1, 100), value_range=(1, 100), capacity_ratio=(0.5, 0.7)):
@@ -52,7 +52,7 @@ class KnapsackInstanceGenerator:
 
         return instance
 
-    def save_instance(self, instance, filename, folder="data/raw/"):
+    def save_instance(self, instance, filename):
         """
         Save a knapsack instance in both JSON and CSV formats.
 
@@ -65,7 +65,7 @@ class KnapsackInstanceGenerator:
         - None
         """
         # Create the folder if it doesn't exist
-        os.makedirs(folder, exist_ok=True)
+        folder = RAW_DATA_DIR
 
         # Save as JSON
         json_path = os.path.join(folder, f"{filename}.json")
@@ -94,7 +94,7 @@ class KnapsackInstanceGenerator:
             for num_items in num_items_list:
                 instance = self.generate_instance(num_items)
                 filename = f"knapsack_{i + 1}_{num_items}_items"
-                self.save_instance(instance, filename, folder)
+                self.save_instance(instance, filename)
                 print(f"Saved instance {filename} to {folder}")
 
 

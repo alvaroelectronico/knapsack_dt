@@ -1,8 +1,8 @@
 import pandas as pd
 import os
+from config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
-
-def preprocess_knapsack_data(folder="raw/", save_folder="processed/"):
+def preprocess_knapsack_data():
     """
     Preprocess knapsack instance files by normalizing weights and values,
     and saving the preprocessed files.
@@ -14,8 +14,8 @@ def preprocess_knapsack_data(folder="raw/", save_folder="processed/"):
     Returns:
     - None
     """
-    # Create the processed folder if it doesn't exist
-    os.makedirs(save_folder, exist_ok=True)
+    folder = RAW_DATA_DIR
+    save_folder = PROCESSED_DATA_DIR
 
     # Process each file in the folder
     for filename in os.listdir(folder):
