@@ -1,0 +1,55 @@
+{
+    "items": [
+        {
+            "item_id": 1,
+            "weight": 50,
+            "value": 77
+        },
+        {
+            "item_id": 2,
+            "weight": 6,
+            "value": 98
+        },
+        {
+            "item_id": 3,
+            "weight": 28,
+            "value": 44
+        },
+        {
+            "item_id": 4,
+            "weight": 40,
+            "value": 99
+        },
+        {
+            "item_id": 5,
+            "weight": 68,
+            "value": 68
+        },
+        {
+            "item_id": 6,
+            "weight": 39,
+            "value": 59
+        },
+        {
+            "item_id": 7,
+            "weight": 77,
+            "value": 29
+        },
+        {
+            "item_id": 8,
+            "weight": 71,
+            "value": 4
+        },
+        {
+            "item_id": 9,
+            "weight": 61,
+            "value": 35
+        },
+        {
+            "item_id": 10,
+            "weight": 7,
+            "value": 63
+        }
+    ],
+    "capacity": 283
+}
