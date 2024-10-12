@@ -1,8 +1,8 @@
 import torch
 import argparse
 import os
-from knapsack_transformer.models.knapsack_transformer import KnapsackTransformer
-from knapsack_transformer.training.seq_trainer import SequenceTrainer
+from decision_transformer.models.decision_transformer import KnapsackTransformer
+from decision_transformer.training.seq_trainer import SequenceTrainer
 from knapsack_instance_generator import load_knapsack_dataset  # Your dataset loader
 
 
@@ -69,20 +69,32 @@ def train_model(args):
 
 
 def get_batch(states, actions, rewards, returns, K, device):
-    """
-    Function to generate a batch of data for training.
-    This needs to sample from your knapsack trajectories.
-    """
-    # Implement the batch sampling logic here as in your preprocessing script
-    # Similar to the get_batch function in experiment.py
-    batch_size = 256  # This can be passed as an argument too
-    # Add logic to fetch batches from knapsack data
-    # For example, randomly selecting sequences of states, actions, rewards
-    # Padding sequences to a fixed length (K)
+    batch_inds = np.random.choice(len(states), size=batch_size, replace=True)
 
-    # Example structure (replace with your logic):
-    # return torch.tensor(...).to(device), ...
-    pass
+    s, a, r, rtg, timesteps, mask = [], [], [], [], [], []
+    for i in batch_inds:
+        traj_states = states[i]
+        traj_actions = actions[i]
+        traj_rewards = rewards[i]
+
+        # Select random starting point within trajectory
+        start = np.random.randint(0, len(traj_states) - K)
+
+        s.append(traj_states[start:start + K])
+        a.append(traj_actions[start:start + K])
+        r.append(traj_rewards[start:start + K])
+
+        # Calculate RTG for each step
+        rtg.append(discount_cumsum(traj_rewards[start:], gamma=1.)[:K])
+        timesteps.append(np.arange(start, start + K))
+        mask.append(np.ones(K))
+
+    return torch.tensor(s).float().to(device), \
+        torch.tensor(a).float().to(device), \
+        torch.tensor(r).float().to(device), \
+        torch.tensor(rtg).float().to(device), \
+        torch.tensor(timesteps).long().to(device), \
+        torch.tensor(mask).float().to(device)
 
 
 if __name__ == "__main__":

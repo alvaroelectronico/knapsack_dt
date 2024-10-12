@@ -8,10 +8,10 @@ import random
 import sys
 
 from evaluation.evaluate_episodes import evaluate_episode, evaluate_episode_rtg
-from knapsack_transformer.models.knapsack_transformer import DecisionTransformer
-from knapsack_transformer.models.mlp_bc import MLPBCModel
-# from knapsack_transformer.training.act_trainer import ActTrainer
-from knapsack_transformer.training.seq_trainer import SequenceTrainer
+from decision_transformer.models.decision_transformer import DecisionTransformer
+from decision_transformer.models.mlp_bc import MLPBCModel
+# from decision_transformer.training.act_trainer import ActTrainer
+from decision_transformer.training.seq_trainer import SequenceTrainer
 
 
 def discount_cumsum(x, gamma):

@@ -4,7 +4,7 @@ import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Define paths relative to the project root
-DATA_DIR = os.path.join(ROOT_DIR, 'data')
-RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw')
-PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed')
-TESTS_DIR = os.path.join(ROOT_DIR, 'tests')
+DATASETS_DIR = os.path.join(ROOT_DIR, 'data', 'datasets')
+# RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw')
+# PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed')
+# TESTS_DIR = os.path.join(ROOT_DIR, 'tests')
