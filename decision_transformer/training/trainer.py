@@ -1,7 +1,7 @@
 import numpy as np
 import torch
-
 import time
+from config import NO_MAX_ITEMS
 
 
 class Trainer:
